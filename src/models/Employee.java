@@ -22,7 +22,7 @@ import javax.persistence.Table;
 @Entity
 public class Employee {
     @Id
-    @Column
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 

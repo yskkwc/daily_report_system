@@ -37,10 +37,15 @@ public class EmployeeValidator {
             return "社員番号を入力してください。";
         }
 
-        // すでに登録されている社員番号との重複チェック
+        // すでにDBに登録されている"code"の重複チェック(EV→DBUtil→DB)
         if (code_duplicate_check_flag) {
             EntityManager em = DBUtil.createEntityManager();
+
+            /*modelsの"checkRegisteredCode"から"SELECT COUNT(e) FROM Employee AS e WHERE e.code = :code"
+            で"code"を引き出す。基本データ型のlongを使用*/
             long employees_count = (long) em.createNamedQuery("checkRegisteredCode", Long.class)
+
+                    //どこにset??
                     .setParameter("code", code)
                     .getSingleResult();
             em.close();
