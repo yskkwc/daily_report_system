@@ -14,16 +14,16 @@ import models.Employee;
 import utils.DBUtil;
 
 /**
- * Servlet implementation class EmployeesShowServlet
+ * Servlet implementation class EmployeeEditServlet
  */
-@WebServlet("/employees/show")
-public class EmployeesShowServlet extends HttpServlet {
+@WebServlet("/employees/edit")
+public class EmployeeEditServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EmployeesShowServlet() {
+    public EmployeesEditServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,22 +32,26 @@ public class EmployeesShowServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        response.getWriter().append("Served at: ").append(request.getContextPath());
-
         EntityManager em = DBUtil.createEntityManager();
 
-        //index.jspからString "id"を/Editで受ける。idなのでint型に変換した上、
+        //show.jspからString "id"を/Editで受ける。idなのでint型に変換した上、
         //em.findでidに相当する((例)5=DB上のid5のついたカラム),を変数eに入れる
         Employee e = em.find(Employee.class, Integer.parseInt(request.getParameter("id")));
 
         em.close();
 
-      //変数eをStringの"employee"にしてshow.jspへ渡す
+        //変数eをStringの"employee"にしてedit.jspへ渡す
         request.setAttribute("employee", e);
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/employees/show.jsp");
+        //UsernameToken要素のId属性を取得して、"_token"にしてedit.jspへ渡す
+        //--request.getSession（）getId（）--はサーバーのセッションIDを返す。
+        //（セッションが存在しない場合、request.getSession（）が作成)
+        request.setAttribute("_token", request.getSession().getId());
+
+        //セッションスコープで変数eのidを"employee_id"にしてedit.jspへ渡す
+        request.getSession().setAttribute("employee_id", e.getId());
+
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/employees/edit.jsp");
         rd.forward(request, response);
     }
-
 }

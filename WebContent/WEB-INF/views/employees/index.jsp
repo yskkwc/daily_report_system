@@ -25,6 +25,7 @@
                                     （削除済み）
                                 </c:when>
                                 <c:otherwise>
+                                    <!-- /showへこのid(?id)を送る。その際Stringの"id"となる -->
                                     <a href="<c:url value='/employees/show?id=${employee.id}' />">詳細を表示</a>
                                 </c:otherwise>
                             </c:choose>
