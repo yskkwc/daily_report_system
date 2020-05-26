@@ -37,7 +37,7 @@ public class EmployeesUpdateServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //edit.jspから"_token"を受ける(Stringのまま)
+        //POST送信だから、edit.jspから"_token"を受ける(Stringのまま)
         String _token = (String)request.getParameter("_token");
 
         //_tokenがnullじゃなかったら かつ、 _tokenとgetId()を比較して同じ文字列だったら
@@ -72,6 +72,8 @@ public class EmployeesUpdateServlet extends HttpServlet {
             //passwordがnull or passwordが("")空欄なら、password_check_flag = false;(行わない)
             if (password == null || password.equals("")) {
                 password_check_flag = false;
+
+            //その他の場合、EncryptUtilの"salt"よりパスワード変換が行われる
             } else {
                 e.setPassword(
                         EncryptUtil.getPasswordEncrypt(password,
@@ -80,12 +82,16 @@ public class EmployeesUpdateServlet extends HttpServlet {
                         );
             }
 
+            //変数eから"name"を受ける
             e.setName(request.getParameter("name"));
             e.setAdmin_flag(Integer.parseInt(request.getParameter("admin_flag")));
             e.setUpdated_at(new Timestamp(System.currentTimeMillis()));
             e.setDelete_flag(0);
 
+            //バリデーション
             List<String> errors = EmployeeValidator.validate(e, code_duplicate_check, password_check_flag);
+
+            //errorが0より大きいなら、edit.jspに"_token", "employee", "errors"をDB更新せずそのまま返す
             if(errors.size() > 0) {
                 em.close();
 
@@ -95,14 +101,20 @@ public class EmployeesUpdateServlet extends HttpServlet {
 
                 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/employees/edit.jsp");
                 rd.forward(request, response);
+
+            //問題なければDBを更新して閉じる
             } else {
                 em.getTransaction().begin();
                 em.getTransaction().commit();
                 em.close();
+
+                //フラッシュメッセージ
                 request.getSession().setAttribute("flush", "更新が完了しました。");
 
+                //セッションスコープを除去
                 request.getSession().removeAttribute("employee_id");
 
+                //index.jspへ飛ぶ
                 response.sendRedirect(request.getContextPath() + "/employees/index");
             }
 

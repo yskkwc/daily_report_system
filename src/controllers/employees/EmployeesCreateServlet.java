@@ -37,6 +37,7 @@ public class EmployeesCreateServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //POST送信だから"_token"を_tokenで取得
         String _token = (String) request.getParameter("_token");
 
         //"_token"=getId(?)

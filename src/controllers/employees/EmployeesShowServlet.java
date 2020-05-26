@@ -37,7 +37,7 @@ public class EmployeesShowServlet extends HttpServlet {
 
         EntityManager em = DBUtil.createEntityManager();
 
-        //index.jspからString "id"を/Editで受ける。idなのでint型に変換した上、
+        //index.jspからString "id"を/showで受ける。idなのでint型に変換した上、
         //em.findでidに相当する((例)5=DB上のid5のついたカラム),を変数eに入れる
         Employee e = em.find(Employee.class, Integer.parseInt(request.getParameter("id")));
 
