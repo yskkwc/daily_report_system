@@ -46,9 +46,10 @@ public class EmployeesCreateServlet extends HttpServlet {
 
             Employee e = new Employee();
 
-            //new.jsp→/create
+            //new.jsp→変数e.setCodeへ
             //社員番号
             e.setCode(request.getParameter("code"));
+
             //氏名
             e.setName(request.getParameter("name"));
 

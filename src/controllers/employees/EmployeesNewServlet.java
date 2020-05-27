@@ -34,7 +34,7 @@ public class EmployeesNewServlet extends HttpServlet {
         //Id(?)を"_token"に入れて"new.jsp"へ送る
         request.setAttribute("_token", request.getSession().getId());
 
-        //Employee(public class Employee {}の全てを"employeeA"に入れて"new.jsp"へ送る
+        //Employee(public class Employee {}の全てを"employee"に入れて"new.jsp"へ送る
         request.setAttribute("employee", new Employee());
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/employees/new.jsp");

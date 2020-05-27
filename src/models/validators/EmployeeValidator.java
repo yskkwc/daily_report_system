@@ -41,8 +41,8 @@ public class EmployeeValidator {
         if (code_duplicate_check_flag) {
             EntityManager em = DBUtil.createEntityManager();
 
-            /*modelsの"checkRegisteredCode"から"SELECT COUNT(e) FROM Employee AS e WHERE e.code = :code"
-            で"code"を引き出す。基本データ型のlongを使用*/
+            /* modelsの"checkRegisteredCode"から"SELECT COUNT(e) FROM Employee AS e WHERE e.code = :code"
+            で"code"を引き出す。基本データ型のlongを使用 */
             long employees_count = (long) em.createNamedQuery("checkRegisteredCode", Long.class)
 
                     //どこにset??
