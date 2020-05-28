@@ -6,9 +6,9 @@ body {
 }
 
 #header {
-    width: 100%;
     height: 70px;
     background-color: #333333;
+    {width: 100%;}
 }
 
 #content {
@@ -23,7 +23,8 @@ h1 {
 }
 
 h2 {
-    font-size: 36px;
+    font-size: 30px;
+    margin-top: 80px;
     margin-bottom: 15px;
 }
 
@@ -108,6 +109,13 @@ select {
 
 h1 a {
     color: #eeeeee;
+}
+
+div.flush_success{
+  color: #008000
+  background-color: #99FF33;
+  {width: 100%;}
+
 }
 
 #footer {
