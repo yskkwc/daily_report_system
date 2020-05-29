@@ -59,30 +59,39 @@ public class LoginServlet extends HttpServlet {
 
         Employee e = null;
 
+        // まず、社員番号とパスワードは空欄じゃないか確認
         if(code != null && !code.equals("") && plain_pass != null && !plain_pass.equals("")) {
+            // login.jspから送られた"code"と"password"をDBへ送る
             EntityManager em = DBUtil.createEntityManager();
 
+            // そのうちplain_pass("password")についてはimport utils.EncryptUtilで暗号化
             String password = EncryptUtil.getPasswordEncrypt(
                     plain_pass,
                     (String)this.getServletContext().getAttribute("salt")
                     );
 
-            // 社員番号とパスワードが正しいかチェックする
+            // Employee.javaで同じidのcodeカラムとpasswordカラムから値を変数eで受ける
             try {
                 e = em.createNamedQuery("checkLoginCodeAndPassword", Employee.class)
+                      // ここでも受ける
                       .setParameter("code", code)
                       .setParameter("pass", password)
                       .getSingleResult();
+
+            /*クエリーのQuery.getSingleResult()やTypedQuery.getSingleResult()が実行され、
+             * 結果が見つからなかった場合に永続化プロバイダによって投げられます。*/
             } catch(NoResultException ex) {}
 
             em.close();
 
+            // eがnullじゃなかったらtrue(エラーがある状態)
             if(e != null) {
                 check_result = true;
             }
         }
-
+        // 「check_result」でない場合、
         if(!check_result) {
+
             // 認証できなかったらログイン画面に戻る
             request.setAttribute("_token", request.getSession().getId());
             request.setAttribute("hasError", true);
@@ -92,10 +101,14 @@ public class LoginServlet extends HttpServlet {
             rd.forward(request, response);
         } else {
             // 認証できたらログイン状態にしてトップページへリダイレクト
+            // eは『セッションスコープ』で"login_employee"にして渡す
+            // 次どこでremoveするか注意
             request.getSession().setAttribute("login_employee", e);
 
+            // "ログインしました。"は『セッションスコープ』で"flush"にして渡す
+            // 次どこでremoveするか注意
             request.getSession().setAttribute("flush", "ログインしました。");
-            response.sendRedirect(request.getContextPath() + "/");
+            response.sendRedirect(request.getContextPath() + "/"); // /topPage/index.jsp
         }
     }
 

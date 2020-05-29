@@ -42,22 +42,26 @@ public class LoginFilter implements Filter {
         String context_path = ((HttpServletRequest)request).getContextPath();
         String servlet_path = ((HttpServletRequest)request).getServletPath();
 
-        if(!servlet_path.matches("/css.*")) {       // CSSフォルダ内は認証処理から除外する
+        // CSSフォルダ内は認証処理から除外する
+        if(!servlet_path.matches("/css.*")) {
             HttpSession session = ((HttpServletRequest)request).getSession();
 
-            // セッションスコープに保存された従業員（ログインユーザ）情報を取得
+            // LoginServletでセッションスコープに保存された"login_employee"を取得、eにしまう
             Employee e = (Employee)session.getAttribute("login_employee");
 
-            if(!servlet_path.equals("/login")) {        // ログイン画面以外について
-                // ログアウトしている状態であれば
-                // ログイン画面にリダイレクト
+            // servlet_pathの中身が"/login"でないとき〜
+            if(!servlet_path.equals("/login")) {
+                // 〜にeがnullのとき
                 if(e == null) {
+
+                    //LoginServletに返す
                     ((HttpServletResponse)response).sendRedirect(context_path + "/login");
                     return;
                 }
 
                 // 従業員管理の機能は管理者のみが閲覧できるようにする
                 if(servlet_path.matches("/employees.*") && e.getAdmin_flag() == 0) {
+                    // 0=一般従業員
                     ((HttpServletResponse)response).sendRedirect(context_path + "/");
                     return;
                 }
