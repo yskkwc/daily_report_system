@@ -1,13 +1,19 @@
 package controllers.toppage;
 
 import java.io.IOException;
+import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import models.Employee;
+import models.Report;
+import utils.DBUtil;
 
 /**
  * Servlet implementation class TopPageServlet
@@ -27,13 +33,45 @@ public class TopPageServlet extends HttpServlet {
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if(request.getSession().getAttribute("flush") != null) {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // DBに接続
+        EntityManager em = DBUtil.createEntityManager();
+
+        // "login_employee"を取り出す(LoginServletでセットしたやつ)
+        Employee login_employee = (Employee) request.getSession().getAttribute("login_employee");
+
+        int page;
+        try {
+            page = Integer.parseInt(request.getParameter("page"));
+        } catch (Exception e) {
+            page = 1;
+        }
+        List<Report> reports = em.createNamedQuery("getMyAllReports", Report.class)
+                .setParameter("employee", login_employee)
+                .setFirstResult(15 * (page - 1))
+                .setMaxResults(15)
+                .getResultList();
+
+        long reports_count = (long) em.createNamedQuery("getMyReportsCount", Long.class)
+                .setParameter("employee", login_employee)
+                .getSingleResult();
+
+        em.close();
+
+        //"getMyAllReports" (Report rのEmployeeとDBのemployeeのr.id DESCが==)
+        request.setAttribute("reports", reports);
+        request.setAttribute("reports_count", reports_count);
+        request.setAttribute("page", page);
+
+        if (request.getSession().getAttribute("flush") != null) {
             request.setAttribute("flush", request.getSession().getAttribute("flush"));
+            // すぐ消さないと次のflushが使えなくなる
             request.getSession().removeAttribute("flush");
         }
-
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topPage/index.jsp");
         rd.forward(request, response);
+
     }
+
 }
