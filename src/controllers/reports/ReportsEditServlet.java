@@ -32,7 +32,8 @@ public class ReportsEditServlet extends HttpServlet {
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
         // DBへ"id"をInt型にして送り、この"id"の情報をeditservletで受けて、rにしまう
@@ -40,11 +41,11 @@ public class ReportsEditServlet extends HttpServlet {
 
         em.close();
 
-        Employee login_employee = (Employee)request.getSession().getAttribute("login_employee");
+        Employee login_employee = (Employee) request.getSession().getAttribute("login_employee");
 
         // 変数rがnullじゃないかつ、/loginから取得したlogin_employeeと変数rが受けた
         // getParameterの"id"が同じ（ログイン者と編集しようとしているひとが同じ)とき
-        if(r != null && login_employee.getId() == r.getEmployee().getId()){
+        if (r != null && login_employee.getId() == r.getEmployee().getId()) {
 
             // 受けた情報をedit.jspへ流す
             request.setAttribute("report", r);

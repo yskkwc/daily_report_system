@@ -32,23 +32,24 @@ public class ReportsIndexServlet extends HttpServlet {
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
         int page;
-        try{
+        try {
             page = Integer.parseInt(request.getParameter("page"));
 
-        } catch(Exception e){
+        } catch (Exception e) {
             page = 1;
         }
         List<Report> reports = em.createNamedQuery("getAllReports", Report.class)
-                                .setFirstResult(15 * (page - 1))
-                                .setMaxResults(15)
-                                .getResultList();
+                .setFirstResult(15 * (page - 1))
+                .setMaxResults(15)
+                .getResultList();
 
-        long reports_count = (long)em.createNamedQuery("getReportsCount", Long.class)
-                                    .getSingleResult();
+        long reports_count = (long) em.createNamedQuery("getReportsCount", Long.class)
+                .getSingleResult();
 
         em.close();
 
@@ -57,7 +58,7 @@ public class ReportsIndexServlet extends HttpServlet {
         request.setAttribute("page", page);
 
         // フラッシュメッセージの設定
-        if(request.getSession().getAttribute("flush") != null){
+        if (request.getSession().getAttribute("flush") != null) {
             request.setAttribute("flush", request.getSession().getAttribute("flush"));
             request.getSession().removeAttribute("flush");
         }
@@ -65,5 +66,5 @@ public class ReportsIndexServlet extends HttpServlet {
         // "reports"のindex.jsp
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/index.jsp");
         rd.forward(request, response);
-        }
+    }
 }

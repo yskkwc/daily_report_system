@@ -38,38 +38,39 @@ public class LoginFilter implements Filter {
     /**
      * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
      */
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        String context_path = ((HttpServletRequest)request).getContextPath();
-        String servlet_path = ((HttpServletRequest)request).getServletPath();
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+        String context_path = ((HttpServletRequest) request).getContextPath();
+        String servlet_path = ((HttpServletRequest) request).getServletPath();
 
         // CSSフォルダ内は認証処理から除外する
-        if(!servlet_path.matches("/css.*")) {
-            HttpSession session = ((HttpServletRequest)request).getSession();
+        if (!servlet_path.matches("/css.*")) {
+            HttpSession session = ((HttpServletRequest) request).getSession();
 
             // LoginServletでセッションスコープに保存された"login_employee"を取得、eにしまう
-            Employee e = (Employee)session.getAttribute("login_employee");
+            Employee e = (Employee) session.getAttribute("login_employee");
 
             // servlet_pathの中身が"/login"でないとき〜
-            if(!servlet_path.equals("/login")) {
+            if (!servlet_path.equals("/login")) {
                 // 〜にeがnullのとき
-                if(e == null) {
+                if (e == null) {
 
                     //LoginServletに返す
-                    ((HttpServletResponse)response).sendRedirect(context_path + "/login");
+                    ((HttpServletResponse) response).sendRedirect(context_path + "/login");
                     return;
                 }
 
                 // 従業員管理の機能は管理者のみが閲覧できるようにする
-                if(servlet_path.matches("/employees.*") && e.getAdmin_flag() == 0) {
+                if (servlet_path.matches("/employees.*") && e.getAdmin_flag() == 0) {
                     // 0=一般従業員
-                    ((HttpServletResponse)response).sendRedirect(context_path + "/");
+                    ((HttpServletResponse) response).sendRedirect(context_path + "/");
                     return;
                 }
-            } else {                                    // ログイン画面について
+            } else { // ログイン画面について
                 // ログインしているのにログイン画面を表示させようとした場合は
                 // システムのトップページにリダイレクト
-                if(e != null) {
-                    ((HttpServletResponse)response).sendRedirect(context_path + "/");
+                if (e != null) {
+                    ((HttpServletResponse) response).sendRedirect(context_path + "/");
                     return;
                 }
             }

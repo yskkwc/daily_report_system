@@ -31,13 +31,14 @@ public class EmployeesDestroyServlet extends HttpServlet {
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         //"_token"を_tokenで入手
-        String _token = (String)request.getParameter("_token");
-        if(_token != null && _token.equals(request.getSession().getId())){
+        String _token = (String) request.getParameter("_token");
+        if (_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
-            Employee e = em.find(Employee.class, (Integer)(request.getSession().getAttribute("employee_id")));
+            Employee e = em.find(Employee.class, (Integer) (request.getSession().getAttribute("employee_id")));
             e.setDelete_flag(1);
             e.setUpdated_at(new Timestamp(System.currentTimeMillis()));
 

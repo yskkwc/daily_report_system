@@ -38,7 +38,7 @@ public class EmployeesUpdateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //POST送信だから、edit.jspから"_token"を受ける(Stringのまま)
-        String _token = (String)request.getParameter("_token");
+        String _token = (String) request.getParameter("_token");
 
         //_tokenがnullじゃなかったら かつ、 _tokenとgetId()を比較して同じ文字列だったら
         if (_token != null && _token.equals(request.getSession().getId())) {
@@ -48,7 +48,7 @@ public class EmployeesUpdateServlet extends HttpServlet {
 
             //edit.jspからString "employee_id"を/updateで受ける。
             //em.findで"employee_id"に相当するintの数値を取得し変数eに入れる
-            Employee e = em.find(Employee.class, (Integer)(request.getSession().getAttribute("employee_id")));
+            Employee e = em.find(Employee.class, (Integer) (request.getSession().getAttribute("employee_id")));
 
             //重複チェック
             Boolean code_duplicate_check = true;
@@ -73,13 +73,11 @@ public class EmployeesUpdateServlet extends HttpServlet {
             if (password == null || password.equals("")) {
                 password_check_flag = false;
 
-            //その他の場合、EncryptUtilの"salt"よりパスワード変換が行われる
+                //その他の場合、EncryptUtilの"salt"よりパスワード変換が行われる
             } else {
                 e.setPassword(
                         EncryptUtil.getPasswordEncrypt(password,
-                                (String)this.getServletContext().getAttribute("salt")
-                                )
-                        );
+                                (String) this.getServletContext().getAttribute("salt")));
             }
 
             //変数eから"name"を受ける
@@ -92,7 +90,7 @@ public class EmployeesUpdateServlet extends HttpServlet {
             List<String> errors = EmployeeValidator.validate(e, code_duplicate_check, password_check_flag);
 
             //errorが0より大きいなら、edit.jspに"_token", "employee", "errors"をDB更新せずそのまま返す
-            if(errors.size() > 0) {
+            if (errors.size() > 0) {
                 em.close();
 
                 request.setAttribute("_token", request.getSession().getId());
@@ -102,7 +100,7 @@ public class EmployeesUpdateServlet extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/employees/edit.jsp");
                 rd.forward(request, response);
 
-            //問題なければDBを更新して閉じる
+                //問題なければDBを更新して閉じる
             } else {
                 em.getTransaction().begin();
                 em.getTransaction().commit();

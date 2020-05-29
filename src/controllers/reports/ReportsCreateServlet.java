@@ -36,22 +36,23 @@ public class ReportsCreateServlet extends HttpServlet {
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         // new.jspから"_token"を呼んでString型 _tokenにする
-        String _token = (String)request.getParameter("_token");
-        if(_token != null && _token.equals(request.getSession().getId())){
+        String _token = (String) request.getParameter("_token");
+        if (_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
             Report r = new Report();
             // LoginServletで作った"login_employee"をset
-            r.setEmployee((Employee)request.getSession().getAttribute("login_employee"));
+            r.setEmployee((Employee) request.getSession().getAttribute("login_employee"));
 
             // rのうちreport_dateは、新規の時間を取得
             Date report_date = new Date(System.currentTimeMillis());
 
             // new.jspから取った"report_date"をrd_strにする
             String rd_str = request.getParameter("report_date");
-            if(rd_str != null && !rd_str.equals("")) {
+            if (rd_str != null && !rd_str.equals("")) {
                 // チェックOKなら改めてreport_dateで受ける
                 report_date = Date.valueOf(request.getParameter("report_date"));
             }
@@ -70,7 +71,7 @@ public class ReportsCreateServlet extends HttpServlet {
             List<String> errors = ReportValidator.validate(r);
             // エラーが検出されればDB閉じて値はr="report",エラー情報はerrors="errors"
             // getId()は"_token"にしてnew.jspに返す
-            if(errors.size() > 0){
+            if (errors.size() > 0) {
                 em.close();
 
                 request.setAttribute("_token", request.getSession().getId());

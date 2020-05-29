@@ -34,10 +34,11 @@ public class LoginServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     // ログイン画面を表示
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         request.setAttribute("_token", request.getSession().getId());
         request.setAttribute("hasError", false);
-        if(request.getSession().getAttribute("flush") != null) {
+        if (request.getSession().getAttribute("flush") != null) {
             request.setAttribute("flush", request.getSession().getAttribute("flush"));
             request.getSession().removeAttribute("flush");
         }
@@ -50,7 +51,8 @@ public class LoginServlet extends HttpServlet {
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     // ログイン処理を実行
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         // 認証結果を格納する変数
         Boolean check_result = false;
 
@@ -60,37 +62,37 @@ public class LoginServlet extends HttpServlet {
         Employee e = null;
 
         // まず、社員番号とパスワードは空欄じゃないか確認
-        if(code != null && !code.equals("") && plain_pass != null && !plain_pass.equals("")) {
+        if (code != null && !code.equals("") && plain_pass != null && !plain_pass.equals("")) {
             // login.jspから送られた"code"と"password"をDBへ送る
             EntityManager em = DBUtil.createEntityManager();
 
             // そのうちplain_pass("password")についてはimport utils.EncryptUtilで暗号化
             String password = EncryptUtil.getPasswordEncrypt(
                     plain_pass,
-                    (String)this.getServletContext().getAttribute("salt")
-                    );
+                    (String) this.getServletContext().getAttribute("salt"));
 
             // Employee.javaで同じidのcodeカラムとpasswordカラムから値を変数eで受ける
             try {
                 e = em.createNamedQuery("checkLoginCodeAndPassword", Employee.class)
-                      // ここでも受ける
-                      .setParameter("code", code)
-                      .setParameter("pass", password)
-                      .getSingleResult();
+                        // ここでも受ける
+                        .setParameter("code", code)
+                        .setParameter("pass", password)
+                        .getSingleResult();
 
-            /*クエリーのQuery.getSingleResult()やTypedQuery.getSingleResult()が実行され、
-             * 結果が見つからなかった場合に永続化プロバイダによって投げられます。*/
-            } catch(NoResultException ex) {}
+                /*クエリーのQuery.getSingleResult()やTypedQuery.getSingleResult()が実行され、
+                 * 結果が見つからなかった場合に永続化プロバイダによって投げられます。*/
+            } catch (NoResultException ex) {
+            }
 
             em.close();
 
             // eがnullじゃなかったらtrue(エラーがある状態)
-            if(e != null) {
+            if (e != null) {
                 check_result = true;
             }
         }
         // 「check_result」でない場合、
-        if(!check_result) {
+        if (!check_result) {
 
             // 認証できなかったらログイン画面に戻る
             request.setAttribute("_token", request.getSession().getId());

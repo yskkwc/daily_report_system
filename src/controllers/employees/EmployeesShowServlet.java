@@ -31,7 +31,8 @@ public class EmployeesShowServlet extends HttpServlet {
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         // TODO Auto-generated method stub
         response.getWriter().append("Served at: ").append(request.getContextPath());
 
@@ -43,7 +44,7 @@ public class EmployeesShowServlet extends HttpServlet {
 
         em.close();
 
-      //変数eをStringの"employee"にしてshow.jspへ渡す
+        //変数eをStringの"employee"にしてshow.jspへ渡す
         request.setAttribute("employee", e);
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/employees/show.jsp");
