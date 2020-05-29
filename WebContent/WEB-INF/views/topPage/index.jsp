@@ -8,5 +8,6 @@
             </div>
         </c:if>
         <h2>日報管理システムへようこそ</h2>
+        <a href="<c:url value='/login' />">ログイン画面</a>
     </c:param>
 </c:import>
