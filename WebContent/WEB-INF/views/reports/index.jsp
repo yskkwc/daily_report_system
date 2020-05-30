@@ -10,6 +10,7 @@
       </div>
     </c:if>
     <h2>日報一覧</h2>
+    <c:if test="${sessionScope.login_employee != null}">
     <table id="report_list">
       <tbody>
         <tr>
@@ -31,7 +32,6 @@
         </c:forEach>
       </tbody>
     </table>
-
     <div id="pagination">
       (全 ${reports_count} 件)<br />
       <c:forEach var="i" begin="1" end="${((reports_count - 1) / 15) + 1}"
@@ -47,7 +47,14 @@
         </c:choose>
       </c:forEach>
     </div>
-    <p>
-      <a href="<c:url value='/reports/new' />">新規日報の登録</a>
+      <p>
+        <a href="<c:url value='/reports/new' />">新規日報の登録</a>
+      </p>
+    </c:if>
+    <c:if test="${sessionScope.login_employee == null}">
+      <p>
+        <a href="/daily_report_system/login">ログインしてください</a>
+      </p>
+    </c:if>
   </c:param>
 </c:import>

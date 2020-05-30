@@ -20,11 +20,9 @@
             </tr>
             <tr>
               <th>内容</th>
-              <td>
-                <pre>
+              <td class="naiyou"><pre>
                   <c:out value="${report.content}" />
-                </pre>
-              </td>
+                </pre></td>
             </tr>
             <tr>
               <th>登録日時</th>
@@ -43,6 +41,20 @@
           <p>
             <a href="<c:url value="/reports/edit?id=${report.id}" />">この日報を編集する</a>
           </p>
+          <p>
+            <a href="#" onclick="confirmDestroy();">この日報を削除する</a>
+          </p>
+          <form method="POST"
+            action="${pageContext.request.contextPath}/reports/destroy">
+            <input type="hidden" name="_token" value="${_token}" />
+          </form>
+          <script>
+            function confirmDestroy() {
+                if(confirm("本当に削除しますか？")) {
+                    document.forms[0].submit();
+                }
+            }
+          </script>
         </c:if>
       </c:when>
       <c:otherwise>
