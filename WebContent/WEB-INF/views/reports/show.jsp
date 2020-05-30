@@ -20,9 +20,11 @@
             </tr>
             <tr>
               <th>内容</th>
-              <td><pre>
+              <td>
+                <pre>
                   <c:out value="${report.content}" />
-                </pre></td>
+                </pre>
+              </td>
             </tr>
             <tr>
               <th>登録日時</th>
