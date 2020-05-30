@@ -20,7 +20,7 @@
             </tr>
             <tr>
               <th>内容</th>
-              <td class="naiyou"><pre>
+              <td><pre>
                   <c:out value="${report.content}" />
                 </pre></td>
             </tr>
@@ -42,20 +42,6 @@
             <a href="<c:url value="/reports/edit?id=${report.id}" />">この日報を編集する</a>
           </p>
         </c:if>
-          <!--  <p>
-            <a href="#" onclick="confirmDestroy();">この日報を削除する</a>
-          </p>
-          <form method="POST"
-            action="${pageContext.request.contextPath}/reports/destroy">
-            <input type="hidden" name="_token" value="${_token}" />
-          </form>
-          <script>
-            function confirmDestroy() {
-                if(confirm("本当に削除しますか？")) {
-                    document.forms[0].submit();
-                }
-            }
-          </script> -->
       </c:when>
       <c:otherwise>
         <h2>お探しのデータは見つかりませんでした。</h2>

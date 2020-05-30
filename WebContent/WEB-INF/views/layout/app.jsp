@@ -14,15 +14,15 @@
     <div id="header">
       <div id="header_menu">
         <h1>
-          <a href="<c:url value='/login' />">日報管理システム</a>
-          <!-- ログイン前にトップページに行けてしまうのでログイン画面にいくようにした -->
+          <a href="<c:url value='/' />">日報管理システム</a>
         </h1>
         &nbsp;&nbsp;&nbsp;
         <c:if test="${sessionScope.login_employee != null}">
           <c:if test="${sessionScope.login_employee.admin_flag == 1}">
             <a href="<c:url value='/employees/index' />">従業員管理</a>&nbsp;
-                        </c:if>
+          </c:if>
           <a href="<c:url value='/reports/index' />">日報管理</a>&nbsp;
+
         </c:if>
       </div>
       <c:if test="${sessionScope.login_employee != null}">
@@ -32,15 +32,7 @@
         </div>
       </c:if>
     </div>
-    <c:if test="${sessionScope.login_employee == null}">
-      <p>
-        <a href="/daily_report_system/login">ログインしてください</a>
-      </p>
-    </c:if>
-      <c:if test="${sessionScope.login_employee != null}">
-          <div id="content">${param.content}</div>
-      </c:if>
-    <div id="content_login">${param.content_login}</div>
+    <div id="content">${param.content}</div>
     <div id="footer">by Taro Kirameki.</div>
   </div>
 </body>

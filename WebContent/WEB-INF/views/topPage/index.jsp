@@ -4,11 +4,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:import url="../layout/app.jsp">
   <c:param name="content">
-    <!-- フラッシュチェック -->
     <c:if test="${flush != null}">
-      <div id="flush_success">
-        <c:out value="${flush}"></c:out>
-      </div>
+        <div id="flush_success">
+            <c:out value="${flush}"></c:out>
+        </div>
     </c:if>
     <h2>日報管理システムへようこそ</h2>
     <h3>
@@ -52,6 +51,8 @@
         </c:choose>
       </c:forEach>
     </div>
-    <p><a href="<c:url value='/reports/new' />">新規日報の登録</a></p>
+    <p>
+      <a href="<c:url value='/reports/new' />">新規日報の登録</a>
+    </p>
   </c:param>
 </c:import>

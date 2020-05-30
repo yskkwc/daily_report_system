@@ -16,16 +16,16 @@ import models.Report;
 import utils.DBUtil;
 
 /**
- * Servlet implementation class TopPageServlet
+ * Servlet implementation class TopPageIndexServlet
  */
 @WebServlet("/index.html")
-public class TopPageServlet extends HttpServlet {
+public class TopPageIndexServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TopPageServlet() {
+    public TopPageIndexServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,9 +33,8 @@ public class TopPageServlet extends HttpServlet {
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // DBに接続
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+     // DBに接続
         EntityManager em = DBUtil.createEntityManager();
 
         // "login_employee"を取り出す(LoginServletでセットしたやつ)
@@ -64,14 +63,12 @@ public class TopPageServlet extends HttpServlet {
         request.setAttribute("reports_count", reports_count);
         request.setAttribute("page", page);
 
-        if (request.getSession().getAttribute("flush") != null) {
+        if(request.getSession().getAttribute("flush") != null) {
             request.setAttribute("flush", request.getSession().getAttribute("flush"));
-            // すぐ消さないと次のflushが使えなくなる
             request.getSession().removeAttribute("flush");
         }
+
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topPage/index.jsp");
         rd.forward(request, response);
-
     }
-
 }
