@@ -41,7 +41,8 @@
           <p>
             <a href="<c:url value="/reports/edit?id=${report.id}" />">この日報を編集する</a>
           </p>
-          <p>
+        </c:if>
+          <!--  <p>
             <a href="#" onclick="confirmDestroy();">この日報を削除する</a>
           </p>
           <form method="POST"
@@ -54,8 +55,7 @@
                     document.forms[0].submit();
                 }
             }
-          </script>
-        </c:if>
+          </script> -->
       </c:when>
       <c:otherwise>
         <h2>お探しのデータは見つかりませんでした。</h2>
