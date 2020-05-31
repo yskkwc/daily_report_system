@@ -15,8 +15,8 @@
 
 <label for="report_date">日付</label>
 <br />
-<input type="date" name="report_date"
-  value="<fmt:formatDate value='${report_date}' pattern='yyyy-MM-dd' />" />
+<input type="date" name="report_date" value="<fmt:formatDate
+value='${report.report_date}' pattern= 'yyyy-MM-dd' />" />
 <br />
 <br />
 
