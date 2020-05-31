@@ -4,8 +4,8 @@
 <c:if test="${errors != null}">
   <div id="flush_error">
     入力内容にエラーがあります。<br />
-    <c:forEach var="error" items="${error}">
-      <c:out value="${error}" />
+    <c:forEach var="error" items="${errors}">
+      ・<c:out value="${error}" />
       <br />
     </c:forEach>
   </div>
