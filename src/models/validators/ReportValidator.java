@@ -19,12 +19,11 @@ public class ReportValidator {
             errors.add(content_error);
         }
         //
-        String range_error = _validateRange(r.getRange());
-        if (!range_error.equals("")) {
-            errors.add(range_error);
+        String publish_error = _validateRange(r.getPublish());
+        if (!publish_error.equals("")) {
+            errors.add(publish_error);
         }
         //
-
         return errors;
     }
 
@@ -44,8 +43,8 @@ public class ReportValidator {
         return "";
     }
     //
-    private static String _validateRange(String range) {
-        if(range == null || range.equals("")) {
+    private static String _validateRange(String publish) {
+        if(publish == null || publish.equals("")) {
             return "内容を入力してください。";
             }
 
