@@ -6,7 +6,6 @@
     <h2>日報 新規登録ページ</h2>
     <!-- <form>の内容を/createに飛ばしてDBへ保管する -->
     <form method="POST" action="<c:url value='/reports/create' />">
-      <!-- 書く部分は"_form.jsp"から -->
       <c:import url="_form.jsp" />
     </form>
     <p>
