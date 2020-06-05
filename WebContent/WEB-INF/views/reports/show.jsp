@@ -25,6 +25,18 @@
                 </pre></td>
             </tr>
             <tr>
+            <th>公開範囲</th>
+            <c:if test="${report.publish == 0}">
+                <td><c:out value= "全員に公開"/></td>
+            </c:if>
+            <c:if test="${report.publish == 1}">
+                <td><c:out value= "部署内と管理者にのみ公開"/></td>
+            </c:if>
+            <c:if test="${report.publish == 2}">
+                <td><c:out value= "自分と管理者にのみ公開"/></td>
+            </c:if>
+            </tr>
+            <tr>
               <th>登録日時</th>
               <td><fmt:formatDate value="${report.created_at}"
                   pattern="yyyy-MM-dd HH:mm:ss" /></td>

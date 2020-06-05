@@ -16,6 +16,6 @@
                 value='${report.report_date}' pattern='yyyy-MM-dd' /></td>
             <td class="report_title">${report.title}</td>
             <td class="report_action"><a
-              href="<c:url value='/reports/show2?id=${report.id}' />">詳細を見る</a></td>
+              href="<c:url value='/reports/show?id=${report.id}' />">詳細を見る</a></td>
           </tr>
         </c:forEach>

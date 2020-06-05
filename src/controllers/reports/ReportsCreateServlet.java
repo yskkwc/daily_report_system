@@ -38,8 +38,8 @@ public class ReportsCreateServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // new.jspから"_token"を呼んでString型 _tokenにする
-        String _token = (String) request.getParameter("_token");
+        // new.jspから"_token"を呼んでString _tokenにする
+        String _token = (String)request.getParameter("_token");
         if (_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
@@ -61,7 +61,7 @@ public class ReportsCreateServlet extends HttpServlet {
             r.setReport_date(report_date);
             r.setTitle(request.getParameter("title"));
             r.setContent(request.getParameter("content"));
-            r.setPublish(request.getParameter("publish"));
+            r.setPublish(Integer.parseInt(request.getParameter("publish")));
 
             // 現在の時間(登録した時間)は自動でTimestamp currentTimeで取得
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
@@ -93,6 +93,5 @@ public class ReportsCreateServlet extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/reports/index");
             }
         }
-
     }
 }

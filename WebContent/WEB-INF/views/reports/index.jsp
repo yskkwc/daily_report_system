@@ -11,19 +11,19 @@
     </c:if>
     <h2>日報一覧</h2>
     <table id="report_list">
-      <c:choose>
-        <c:when test='${report.publish == "0"}'>
-          <c:import url="range0.jsp"></c:import>
+    <c:choose>
+        <c:when test="${report.publish == 0}">
+          <p>よくできました！！</p>
         </c:when>
-        <c:when test='${report.publish == "1"}'>
+        <c:when test="${report.publish == 1}">
           <c:import url="range1.jsp"></c:import>
         </c:when>
-        <c:when test='${report.publish == "2"}'>
+        <c:when test="${report.publish == 2}">
           <c:import url="range2.jsp"></c:import>
         </c:when>
-      </c:choose>
-    </table>
 
+    </c:choose>
+    </table>
     <div id="pagination">
       (全 ${reports_count} 件)<br />
       <c:forEach var="i" begin="1" end="${((reports_count - 1) / 15) + 1}"
