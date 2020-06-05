@@ -53,6 +53,9 @@ public class EmployeesCreateServlet extends HttpServlet {
             //氏名
             e.setName(request.getParameter("name"));
 
+            // 所属部署
+            e.setDepartment(request.getParameter("department"));
+
             //パスワード, servlet上で"password"を"salt"に変換してからDBへ送る
             //new.jsp→/create→EncryrtUtil
             e.setPassword(EncryptUtil.getPasswordEncrypt(
