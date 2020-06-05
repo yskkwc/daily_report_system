@@ -52,7 +52,6 @@ public class EmployeesUpdateServlet extends HttpServlet {
 
             //重複チェック
             Boolean code_duplicate_check = true;
-
             //edit.jspから"code"を受け取る
             //e.getCode()と"code"がtrue(重複してる)ならcode_duplicate_check = false(行わない)
             if (e.getCode().equals(request.getParameter("code"))) {
@@ -80,9 +79,13 @@ public class EmployeesUpdateServlet extends HttpServlet {
                                 (String) this.getServletContext().getAttribute("salt")));
             }
 
-            //変数eから"name"を受ける
+            // _checkを行わない他の要素
+            //変数eで"name"を受ける
             e.setName(request.getParameter("name"));
+            e.setDepartment(request.getParameter("department"));
             e.setAdmin_flag(Integer.parseInt(request.getParameter("admin_flag")));
+
+            // 自動生成
             e.setUpdated_at(new Timestamp(System.currentTimeMillis()));
             e.setDelete_flag(0);
 
