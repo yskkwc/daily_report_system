@@ -62,8 +62,8 @@ public class Report {
         @Column(name = "updated_at", nullable = false)
         private Timestamp updated_at;
 
-        @Column(name = "range", nullable = false)
-        private Integer range;
+        /*@Column(name = "range", nullable = false)
+        private Integer range;*/
 
         public Integer getId() {
             return id;
@@ -121,11 +121,11 @@ public class Report {
             this.updated_at = updated_at;
         }
 
-        public Integer getRange() {
+        /*public Integer getRange() {
             return range;
         }
 
         public void setRange(Integer range) {
             this.range = range;
-        }
+        }*/
     }
