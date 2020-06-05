@@ -63,7 +63,7 @@ public class Report {
         private Timestamp updated_at;
 
         @Column(name = "publish", nullable = false)
-        private String publish;
+        private Integer publish;
 
         public Integer getId() {
             return id;
@@ -121,11 +121,11 @@ public class Report {
             this.updated_at = updated_at;
         }
 
-        public String getPublish() {
+        public Integer getPublish() {
             return publish;
         }
 
-        public void setPublish(String publish) {
+        public void setPublish(Integer publish) {
             this.publish = publish;
         }
     }

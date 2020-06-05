@@ -11,19 +11,19 @@
     </c:if>
     <h2>日報一覧</h2>
     <table id="report_list">
-              <c:choose>
-          <!-- 全員に公開 -->
-          <c:when test='${report.range == "0"}'>
+          <c:choose>
+
+          <c:when test='${report.publish == "0"}'>
             <c:import url="range0.jsp"></c:import>
           </c:when>
 
-          <!-- 部署内と管理者のみに公開 -->
-          <c:when test='${report.range == "1"}'>
+
+          <c:when test='${report.publish == "1"}'>
             <c:import url="range1.jsp"></c:import>
           </c:when>
 
-          <!-- 自分と管理者のみに公開 -->
-          <c:when test='${report.range == "2"}'>
+
+          <c:when test='${report.publish == "2"}'>
             <c:import url="range2.jsp"></c:import>
           </c:when>
           <c:otherwise>

@@ -43,7 +43,7 @@ public class ReportValidator {
         return "";
     }
     //
-    private static String _validateRange(String publish) {
+    private static String _validateRange(Integer publish) {
         if(publish == null || publish.equals("")) {
             return "内容を入力してください。";
             }

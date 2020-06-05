@@ -40,7 +40,7 @@ value='${report.report_date}' pattern= 'yyyy-MM-dd' />" />
 <br />
 
 <p>公開範囲</p>
-<select name="range">
+<select name="publish">
  <option value="0">全員に公開</option>
  <option value="1">部署内と管理者のみに公開</option>
  <option value="2">自分と管理者のみに公開</option>
