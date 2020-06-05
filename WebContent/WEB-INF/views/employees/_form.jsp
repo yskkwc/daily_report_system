@@ -22,6 +22,20 @@
 <br />
 <br />
 
+<p>所属</p>
+<select name="department">
+    <option value="general">総務部</option>
+    <option value="legal">法務部</option>
+    <option value="hr">人事部</option>
+    <option value="account">経理部</option>
+    <option value="corpsales">法人営業部</option>
+    <option value="intsales">国際営業部</option>
+    <option value="qm">品質管理部</option>
+</select>
+
+<br/>
+<br/>
+
 <label for="password">パスワード</label>
 <br />
 <input type="password" name="password" />
