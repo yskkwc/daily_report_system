@@ -14,6 +14,7 @@
         <tr>
           <th>社員番号</th>
           <th>氏名</th>
+          <th>所属</th>
           <th>操作</th>
         </tr>
         <c:forEach var="employee" items="${employees}" varStatus="status">
@@ -22,11 +23,37 @@
             <!-- 社員番号 -->
             <td><c:out value="${employee.name}" /></td>
             <!-- 氏名 -->
+            <td>
+                <c:choose>
+                    <c:when test="${employee.department == 'general'}">
+                        <c:out value= "総務部"/>
+                    </c:when>
+                    <c:when test="${employee.department == 'legal'}">
+                        <c:out value= "法務部"/>
+                    </c:when>
+                    <c:when test="${employee.department == 'hr'}">
+                        <c:out value= "人事部"/>
+                    </c:when>
+                    <c:when test="${employee.department == 'account'}">
+                        <c:out value= "経理部"/>
+                    </c:when>
+                    <c:when test="${employee.department == 'corpsales'}">
+                        <c:out value= "法人営業部"/>
+                    </c:when>
+                    <c:when test="${employee.department == 'intsales'}">
+                        <c:out value= "国際営業部"/>
+                    </c:when>
+                    <c:when test="${employee.department == 'qm'}">
+                        <c:out value= "品質管理部"/>
+                    </c:when>
+                </c:choose>
+            </td>
+            <!-- 部署名 -->
             <td><c:choose>
                 <c:when test="${employee.delete_flag == 1}">
                   <!-- delete_flagが1になったら -->
                                     （削除済み）
-                                </c:when>
+                </c:when>
                 <c:otherwise>
                   <!-- /showへこのid(?id)を送る。その際Stringの"id"となる -->
                   <a href="<c:url value='/employees/show?id=${employee.id}' />">詳細を表示</a>
