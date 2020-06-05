@@ -50,6 +50,7 @@ public class EmployeesEditServlet extends HttpServlet {
         //セッションスコープで変数eのidを"employee_id"にしてedit.jspへ渡す
         request.setAttribute("_token", request.getSession().getId());
 
+        // jspをまたいで/updateServletに渡したい為
         request.getSession().setAttribute("employee_id", e.getId());
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/employees/edit.jsp");
