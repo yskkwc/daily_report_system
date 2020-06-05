@@ -11,25 +11,17 @@
     </c:if>
     <h2>日報一覧</h2>
     <table id="report_list">
-          <c:choose>
-
-          <c:when test='${report.publish == "0"}'>
-            <c:import url="range0.jsp"></c:import>
-          </c:when>
-
-
-          <c:when test='${report.publish == "1"}'>
-            <c:import url="range1.jsp"></c:import>
-          </c:when>
-
-
-          <c:when test='${report.publish == "2"}'>
-            <c:import url="range2.jsp"></c:import>
-          </c:when>
-          <c:otherwise>
-            <c:import url="range0.jsp"></c:import>
-          </c:otherwise>
-        </c:choose>
+      <c:choose>
+        <c:when test='${report.publish == "0"}'>
+          <c:import url="range0.jsp"></c:import>
+        </c:when>
+        <c:when test='${report.publish == "1"}'>
+          <c:import url="range1.jsp"></c:import>
+        </c:when>
+        <c:when test='${report.publish == "2"}'>
+          <c:import url="range2.jsp"></c:import>
+        </c:when>
+      </c:choose>
     </table>
 
     <div id="pagination">
