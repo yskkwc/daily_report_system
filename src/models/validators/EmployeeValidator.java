@@ -27,6 +27,11 @@ public class EmployeeValidator {
             errors.add(password_error);
         }
 
+        String department_error = _validateDepartment(e.getDepartment());
+        if (!department_error.equals("")) {
+            errors.add(department_error);
+        }
+
         return errors;
     }
 
@@ -63,6 +68,13 @@ public class EmployeeValidator {
             return "氏名を入力してください。";
         }
 
+        return "";
+    }
+
+    private static String _validateDepartment(String department) {
+    if (department == null || department.equals("")) {
+        return "部署名を選択してください";
+        }
         return "";
     }
 

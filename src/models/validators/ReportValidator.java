@@ -19,6 +19,11 @@ public class ReportValidator {
             errors.add(content_error);
         }
 
+        String range_error = _validateRange(r.getRange());
+        if (!range_error.equals("")) {
+            errors.add(range_error);
+        }
+
         return errors;
     }
 
@@ -34,6 +39,14 @@ public class ReportValidator {
         if (content == null || content.equals("")) {
             return "内容を入力してください。";
         }
+
+        return "";
+    }
+
+    private static String _validateRange(Integer range) {
+        if(range == null || range.equals("")) {
+            return "内容を入力してください。";
+            }
 
         return "";
     }
