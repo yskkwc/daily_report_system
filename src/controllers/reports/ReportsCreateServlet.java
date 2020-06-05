@@ -61,6 +61,7 @@ public class ReportsCreateServlet extends HttpServlet {
             r.setReport_date(report_date);
             r.setTitle(request.getParameter("title"));
             r.setContent(request.getParameter("content"));
+            r.setRange(request.getParameter("range"));
 
             // 現在の時間(登録した時間)は自動でTimestamp currentTimeで取得
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
