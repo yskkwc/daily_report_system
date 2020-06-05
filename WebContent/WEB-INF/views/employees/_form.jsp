@@ -32,7 +32,6 @@
     <option value="intsales">国際営業部</option>
     <option value="qm">品質管理部</option>
 </select>
-
 <br/>
 <br/>
 

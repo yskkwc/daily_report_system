@@ -11,25 +11,25 @@
     </c:if>
     <h2>日報一覧</h2>
     <table id="report_list">
-      <tbody>
-        <tr>
-          <th class="report_name">氏名</th>
-          <th class="report_date">日付</th>
-          <th class="report_title">タイトル</th>
-          <th class="report_action">操作</th>
-        </tr>
-        <c:forEach var="report" items="${reports}" varStatus="status">
-          <tr class="row${status.count % 2}">
-            <td class="report_name"><c:out
-                value="${report.employee.name}" /></td>
-            <td class="report_date"><fmt:formatDate
-                value='${report.report_date}' pattern='yyyy-MM-dd' /></td>
-            <td class="report_title">${report.title}</td>
-            <td class="report_action"><a
-              href="<c:url value='/reports/show?id=${report.id}' />">詳細を見る</a></td>
-          </tr>
-        </c:forEach>
-      </tbody>
+              <c:choose>
+          <!-- 全員に公開 -->
+          <c:when test="${report.range == 0}">
+            <c:import url="range0.jsp"></c:import>
+          </c:when>
+
+          <!-- 部署内と管理者のみに公開 -->
+          <c:when test="${report.range == 1}">
+            <c:import url="range1.jsp"></c:import>
+          </c:when>
+
+          <!-- 自分と管理者のみに公開 -->
+          <c:when test="${report.range == 2}">
+            <c:import url="range2.jsp"></c:import>
+          </c:when>
+          <c:otherwise>
+            <c:import url="range0.jsp"></c:import>
+          </c:otherwise>
+        </c:choose>
     </table>
 
     <div id="pagination">

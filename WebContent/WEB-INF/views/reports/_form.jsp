@@ -39,6 +39,14 @@ value='${report.report_date}' pattern= 'yyyy-MM-dd' />" />
 <br />
 <br />
 
+<p>公開範囲</p>
+<select name="range">
+ <option value="0">全員に公開</option>
+ <option value="1">部署内と管理者のみに公開</option>
+ <option value="2">自分と管理者のみに公開</option>
+</select>
+<br/><br/>
+
 <!-- "_token"の中身はgetId()したId番号 -->
 <input type="hidden" name="_token" value="${_token}" />
 <button type="submit">投稿</button>
