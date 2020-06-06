@@ -11,21 +11,53 @@
     </c:if>
     <h2>日報一覧</h2>
     <table id="report_list">
-    <c:choose>
-        <c:when test="${report.publish == 0}">
-          <c:import url="range0.jsp"></c:import>
-        </c:when>
-        <c:when test="${report.publish == 1}">
-          <c:import url="range1.jsp"></c:import>
-        </c:when>
-        <c:when test="${report.publish == 2}">
-          <c:import url="range2.jsp"></c:import>
-        </c:when>
-        <c:otherwise>
-            <c:import url="range0.jsp"></c:import>
-        </c:otherwise>
-    </c:choose>
+      <tr>
+        <th class="report_name">氏名</th>
+        <th class="report_department">所属</th>
+        <th class="report_date">日付</th>
+        <th class="report_title">タイトル</th>
+        <th class="report_action">操作</th>
+      </tr>
+
+      <c:forEach var="report" items="${reports}" varStatus="status">
+        <tr class="row${status.count % 2}">
+          <td class="report_name">
+                <c:out value="${report.employee.name}" />
+          </td>
+          <td class="report_department">
+                <c:choose>
+                    <c:when test="${report.employee.department == 'general'}">
+                        <c:out value= "総務部"/>
+                    </c:when>
+                    <c:when test="${report.employee.department == 'legal'}">
+                        <c:out value= "法務部"/>
+                    </c:when>
+                    <c:when test="${report.employee.department == 'hr'}">
+                        <c:out value= "人事部"/>
+                    </c:when>
+                    <c:when test="${report.employee.department == 'account'}">
+                        <c:out value= "経理部"/>
+                    </c:when>
+                    <c:when test="${report.employee.department == 'corpsales'}">
+                        <c:out value= "営業部"/>
+                    </c:when>
+                </c:choose>
+          </td>
+
+          <td class="report_date"><fmt:formatDate
+              value='${report.report_date}' pattern='yyyy-MM-dd' /></td>
+
+          <td class="report_title">${report.title}</td>
+
+          <td class="report_action"><a
+            href="<c:url value='/reports/show?id=${report.id}' />">詳細を見る</a></td>
+
+        </tr>
+
+      </c:forEach>
+
     </table>
+
     <div id="pagination">
       (全 ${reports_count} 件)<br />
       <c:forEach var="i" begin="1" end="${((reports_count - 1) / 15) + 1}"
@@ -33,11 +65,11 @@
         <c:choose>
           <c:when test="${i == page}">
             <c:out value="${i}" />&nbsp;
-                      </c:when>
+          </c:when>
           <c:otherwise>
             <a href="<c:url value='/reports/index?page=${i}' />"><c:out
                 value="${i}" /></a>&nbsp;
-                      </c:otherwise>
+          </c:otherwise>
         </c:choose>
       </c:forEach>
     </div>

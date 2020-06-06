@@ -26,14 +26,14 @@
             </tr>
             <tr>
             <th>公開範囲</th>
-            <c:if test="${report.publish == 0}">
-                <td><c:out value= "全員に公開"/></td>
-            </c:if>
             <c:if test="${report.publish == 1}">
-                <td><c:out value= "部署内と管理者にのみ公開"/></td>
+                <td><c:out value= "全員に公開"/></td>
             </c:if>
             <c:if test="${report.publish == 2}">
                 <td><c:out value= "自分と管理者にのみ公開"/></td>
+            </c:if>
+            <c:if test="${report.publish == 3}">
+                <td><c:out value= "部署内にのみ公開"/></td>
             </c:if>
             </tr>
             <tr>

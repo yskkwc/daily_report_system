@@ -41,9 +41,23 @@ value='${report.report_date}' pattern= 'yyyy-MM-dd' />" />
 
 <p>公開範囲</p>
 <select name="publish">
- <option value="0">全員に公開</option>
- <option value="1">部署内と管理者にのみ公開</option>
- <option value="2">自分と管理者にのみ公開</option>
+  <c:choose>
+    <c:when test='${report.publish == "1"}'>
+      <option selected value="1">全員に公開</option> />
+    </c:when>
+    <c:when test='${report.publish == "2"}'>
+      <option selected value="2">自分と管理者にのみ公開</option> />
+    </c:when>
+    <c:when test='${report.publish == "3"}'>
+      <option selected value="3">部署内にのみ公開</option> />
+    </c:when>
+    <c:otherwise>
+      <option value="0">公開範囲を選択してください</option>
+      <option value="1">全員に公開</option>
+      <option value="2">自分と管理者にのみ公開</option>
+      <option value="3">部署内にのみ公開</option>
+    </c:otherwise>
+  </c:choose>
 </select>
 <br/><br/>
 

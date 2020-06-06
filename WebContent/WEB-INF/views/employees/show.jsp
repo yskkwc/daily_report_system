@@ -35,13 +35,7 @@
                         <c:out value= "経理部"/>
                     </c:when>
                     <c:when test="${employee.department == 'corpsales'}">
-                        <c:out value= "法人営業部"/>
-                    </c:when>
-                    <c:when test="${employee.department == 'intsales'}">
-                        <c:out value= "国際営業部"/>
-                    </c:when>
-                    <c:when test="${employee.department == 'qm'}">
-                        <c:out value= "品質管理部"/>
+                        <c:out value= "営業部"/>
                     </c:when>
                 </c:choose>
               </td>

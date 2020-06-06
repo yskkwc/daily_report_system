@@ -44,8 +44,8 @@ public class ReportValidator {
     }
     //
     private static String _validateRange(Integer publish) {
-        if(publish == null || publish.equals("")) {
-            return "内容を入力してください。";
+        if(publish == 0 || publish.equals("")) {
+            return "公開範囲を設定してください。";
             }
 
         return "";
