@@ -64,6 +64,7 @@ public class ReportsUpdateServlet extends HttpServlet {
 
             r.setUpdated_at(new Timestamp(System.currentTimeMillis()));
 
+            //値をsetした変数rをバリデーション に通す
             List<String> errors = ReportValidator.validate(r);
             if (errors.size() > 0) {
                 em.close();
