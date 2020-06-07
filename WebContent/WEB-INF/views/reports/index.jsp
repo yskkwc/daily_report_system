@@ -18,7 +18,6 @@
         <th class="report_title">タイトル</th>
         <th class="report_action">操作</th>
       </tr>
-
       <c:forEach var="report" items="${reports}" varStatus="status">
         <tr class="row${status.count % 2}">
           <td class="report_name">
@@ -43,12 +42,25 @@
                     </c:when>
                 </c:choose>
           </td>
-
           <td class="report_date"><fmt:formatDate
               value='${report.report_date}' pattern='yyyy-MM-dd' /></td>
-
-          <td class="report_title">${report.title}</td>
-
+          <c:choose>
+            <c:when test="${report.publish == 1}">
+                <td class="report_title">${report.title}</td>
+            </c:when>
+            <c:when test="${report.publish == 2 && sessionScope.login_employee.id
+            == report.employee.id || sessionScope.login_employee.admin_flag == 1}">
+                <td class="report_title">${report.title}</td>
+            </c:when>
+            <c:when test="${report.publish == 3 && sessionScope.login_employee.id
+            == report.employee.id && sessionScope.login_employee.department == report.employee.department
+            || sessionScope.login_employee.admin_flag == 1}">
+                <td class="report_title">${report.title}</td>
+            </c:when>
+            <c:otherwise>
+                <td class="report_title">閲覧権限がありません</td>
+            </c:otherwise>
+          </c:choose>
           <td class="report_action"><a
             href="<c:url value='/reports/show?id=${report.id}' />">詳細を見る</a></td>
 
