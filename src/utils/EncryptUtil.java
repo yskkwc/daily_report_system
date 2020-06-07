@@ -11,7 +11,7 @@ public class EncryptUtil {
 
         if (plain_p != null && !plain_p.equals("")) {
             byte[] bytes;
-            String password = plain_p + salt;
+            String password = plain_p + salt; //ここ注意
             try {
                 bytes = MessageDigest.getInstance("SHA-256").digest(password.getBytes());
                 ret = DatatypeConverter.printHexBinary(bytes);

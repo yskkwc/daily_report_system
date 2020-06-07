@@ -15,7 +15,8 @@
 
 <label for="report_date">日付</label>
 <br />
-<input type="date" name="report_date" value="<fmt:formatDate
+<input type="date" name="report_date"
+  value="<fmt:formatDate
 value='${report.report_date}' pattern= 'yyyy-MM-dd' />" />
 <br />
 <br />
@@ -59,7 +60,8 @@ value='${report.report_date}' pattern= 'yyyy-MM-dd' />" />
     </c:otherwise>
   </c:choose>
 </select>
-<br/><br/>
+<br />
+<br />
 
 <!-- "_token"の中身はgetId()したId番号 -->
 <input type="hidden" name="_token" value="${_token}" />

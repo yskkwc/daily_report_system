@@ -92,7 +92,7 @@ public class EmployeesUpdateServlet extends HttpServlet {
             //バリデーション
             List<String> errors = EmployeeValidator.validate(e, code_duplicate_check, password_check_flag);
 
-            //errorが0より大きいなら、edit.jspに"_token", "employee", "errors"をDB更新せずそのまま返す
+            //errorが0より大きいならedit.jspに"_token", "employee", "errors"をDB更新せずそのまま返す
             if (errors.size() > 0) {
                 em.close();
 

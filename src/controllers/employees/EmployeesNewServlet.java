@@ -32,7 +32,7 @@ public class EmployeesNewServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        //Id(?)を"_token"に入れて"new.jsp"へ送る
+        //Id(?)を"_token"に入れて"new.jsp"へ送る。
         request.setAttribute("_token", request.getSession().getId());
 
         //Employee(public class Employee {}の全てを"employee"に入れて"new.jsp"へ送る

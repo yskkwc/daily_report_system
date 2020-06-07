@@ -23,25 +23,23 @@
             <!-- 社員番号 -->
             <td><c:out value="${employee.name}" /></td>
             <!-- 氏名 -->
-            <td>
-                <c:choose>
-                    <c:when test="${employee.department == 'general'}">
-                        <c:out value= "総務部"/>
-                    </c:when>
-                    <c:when test="${employee.department == 'legal'}">
-                        <c:out value= "法務部"/>
-                    </c:when>
-                    <c:when test="${employee.department == 'hr'}">
-                        <c:out value= "人事部"/>
-                    </c:when>
-                    <c:when test="${employee.department == 'account'}">
-                        <c:out value= "経理部"/>
-                    </c:when>
-                    <c:when test="${employee.department == 'corpsales'}">
-                        <c:out value= "営業部"/>
-                    </c:when>
-                </c:choose>
-            </td>
+            <td><c:choose>
+                <c:when test="${employee.department == 'general'}">
+                  <c:out value="総務部" />
+                </c:when>
+                <c:when test="${employee.department == 'legal'}">
+                  <c:out value="法務部" />
+                </c:when>
+                <c:when test="${employee.department == 'hr'}">
+                  <c:out value="人事部" />
+                </c:when>
+                <c:when test="${employee.department == 'account'}">
+                  <c:out value="経理部" />
+                </c:when>
+                <c:when test="${employee.department == 'corpsales'}">
+                  <c:out value="営業部" />
+                </c:when>
+              </c:choose></td>
             <!-- 部署名 -->
             <td><c:choose>
                 <c:when test="${employee.delete_flag == 1}">

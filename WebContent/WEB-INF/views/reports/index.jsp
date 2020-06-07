@@ -20,45 +20,44 @@
       </tr>
       <c:forEach var="report" items="${reports}" varStatus="status">
         <tr class="row${status.count % 2}">
-          <td class="report_name">
-                <c:out value="${report.employee.name}" />
+          <td class="report_name"><c:out value="${report.employee.name}" />
           </td>
-          <td class="report_department">
-                <c:choose>
-                    <c:when test="${report.employee.department == 'general'}">
-                        <c:out value= "総務部"/>
-                    </c:when>
-                    <c:when test="${report.employee.department == 'legal'}">
-                        <c:out value= "法務部"/>
-                    </c:when>
-                    <c:when test="${report.employee.department == 'hr'}">
-                        <c:out value= "人事部"/>
-                    </c:when>
-                    <c:when test="${report.employee.department == 'account'}">
-                        <c:out value= "経理部"/>
-                    </c:when>
-                    <c:when test="${report.employee.department == 'corpsales'}">
-                        <c:out value= "営業部"/>
-                    </c:when>
-                </c:choose>
-          </td>
+          <td class="report_department"><c:choose>
+              <c:when test="${report.employee.department == 'general'}">
+                <c:out value="総務部" />
+              </c:when>
+              <c:when test="${report.employee.department == 'legal'}">
+                <c:out value="法務部" />
+              </c:when>
+              <c:when test="${report.employee.department == 'hr'}">
+                <c:out value="人事部" />
+              </c:when>
+              <c:when test="${report.employee.department == 'account'}">
+                <c:out value="経理部" />
+              </c:when>
+              <c:when test="${report.employee.department == 'corpsales'}">
+                <c:out value="営業部" />
+              </c:when>
+            </c:choose></td>
           <td class="report_date"><fmt:formatDate
               value='${report.report_date}' pattern='yyyy-MM-dd' /></td>
           <c:choose>
             <c:when test="${report.publish == 1}">
-                <td class="report_title">${report.title}</td>
+              <td class="report_title">${report.title}</td>
             </c:when>
-            <c:when test="${report.publish == 2 && sessionScope.login_employee.id
+            <c:when
+              test="${report.publish == 2 && sessionScope.login_employee.id
             == report.employee.id || sessionScope.login_employee.admin_flag == 1}">
-                <td class="report_title">${report.title}</td>
+              <td class="report_title">${report.title}</td>
             </c:when>
-            <c:when test="${report.publish == 3 && sessionScope.login_employee.id
+            <c:when
+              test="${report.publish == 3 && sessionScope.login_employee.id
             == report.employee.id && sessionScope.login_employee.department == report.employee.department
             || sessionScope.login_employee.admin_flag == 1}">
-                <td class="report_title">${report.title}</td>
+              <td class="report_title">${report.title}</td>
             </c:when>
             <c:otherwise>
-                <td class="report_title">閲覧権限がありません</td>
+              <td class="report_title">閲覧権限がありません</td>
             </c:otherwise>
           </c:choose>
           <td class="report_action"><a

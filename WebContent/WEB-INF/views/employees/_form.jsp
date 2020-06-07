@@ -24,27 +24,27 @@
 
 <p>所属</p>
 <select name="department">
-<c:choose>
+  <c:choose>
     <c:when test='${employee.department == "general"}'>
-        <option selected value="general">総務部</option> />
+      <option selected value="general">総務部</option> />
     </c:when>
     <c:when test='${emplopyee.department == "legal"}'>
-        <option selected value="legal">法務部</option>
+      <option selected value="legal">法務部</option>
     </c:when>
     <c:when test='${emplopyee.department == "hr"}'>
-        <option selected value="hr">人事部</option>
+      <option selected value="hr">人事部</option>
     </c:when>
     <c:when test='${emplopyee.department == "account"}'>
-        <option selected value="account">経理部</option>
+      <option selected value="account">経理部</option>
     </c:when>
     <c:when test='${emplopyee.department == "corpsales"}'>
-        <option selected value="corpsales">法人営業部</option>
+      <option selected value="corpsales">法人営業部</option>
     </c:when>
     <c:when test='${emplopyee.department == "intsales"}'>
-        <option selected value="intsales">国際営業部</option>
+      <option selected value="intsales">国際営業部</option>
     </c:when>
     <c:when test='${emplopyee.department == "qm"}'>
-        <option selected value="qm">品質管理部</option>
+      <option selected value="qm">品質管理部</option>
     </c:when>
     <c:otherwise>
       <option value="">所属を選択してください</option>
@@ -54,11 +54,11 @@
       <option value="account">経理部</option>
       <option value="corpsales">営業部</option>
     </c:otherwise>
-</c:choose>
+  </c:choose>
 </select>
 
-<br/>
-<br/>
+<br />
+<br />
 
 <label for="password">パスワード</label>
 <br />

@@ -82,7 +82,7 @@ public class ReportsUpdateServlet extends HttpServlet {
                 em.close();
                 request.getSession().setAttribute("flush", "更新が完了しました。");
 
-                // セッションスコープ除外
+                // セッションスコープを除外
                 request.getSession().removeAttribute("report_id");
 
                 response.sendRedirect(request.getContextPath() + "/reports/index");

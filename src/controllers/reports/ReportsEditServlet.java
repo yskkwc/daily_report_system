@@ -44,7 +44,7 @@ public class ReportsEditServlet extends HttpServlet {
         Employee login_employee = (Employee) request.getSession().getAttribute("login_employee");
 
         // 変数rがnullじゃないかつ、/loginから取得したlogin_employeeと変数rが受けた
-        // getParameterの"id"が同じ（ログイン者と編集しようとしているひとが同じ)とき
+        // getParameterの"id"が同じ（ログイン者と編集しようとしている人が同じ)とき
         if (r != null && login_employee.getId() == r.getEmployee().getId()) {
 
             // 受けた情報をedit.jspへ流す

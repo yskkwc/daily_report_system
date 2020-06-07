@@ -55,5 +55,4 @@ public class PropertiesListener implements ServletContextListener {
         } catch (IOException e) {
         }
     }
-
 }

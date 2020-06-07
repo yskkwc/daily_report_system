@@ -8,21 +8,25 @@
       <c:when test="${report != null}">
         <h2>日報 詳細ページ</h2>
         <table>
-            <c:choose>
+          <c:choose>
             <c:when test="${report.publish == 1}">
-                <c:import url="detail.jsp" />
+              <c:import url="detail.jsp" />
             </c:when>
-            <c:when test="${report.publish == 2 && sessionScope.login_employee.id
+            <c:when
+              test="${report.publish == 2 && sessionScope.login_employee.id
             == report.employee.id || sessionScope.login_employee.admin_flag == 1}">
-                <c:import url="detail.jsp" />
+              <c:import url="detail.jsp" />
             </c:when>
-            <c:when test="${report.publish == 3 && sessionScope.login_employee.id
+            <c:when
+              test="${report.publish == 3 && sessionScope.login_employee.id
             == report.employee.id && sessionScope.login_employee.department == report.employee.department
             || sessionScope.login_employee.admin_flag == 1}">
-                <c:import url="detail.jsp" />
+              <c:import url="detail.jsp" />
             </c:when>
             <c:otherwise>
-                <h3><c:out value= "閲覧権限がありません" /></h3>
+              <h3>
+                <c:out value="閲覧権限がありません" />
+              </h3>
             </c:otherwise>
           </c:choose>
         </table>

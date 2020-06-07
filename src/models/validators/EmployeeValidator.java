@@ -72,8 +72,8 @@ public class EmployeeValidator {
     }
 
     private static String _validateDepartment(String department) {
-    if (department == null || department.equals("")) {
-        return "部署名を選択してください";
+        if (department == null || department.equals("")) {
+            return "部署名を選択してください";
         }
         return "";
     }

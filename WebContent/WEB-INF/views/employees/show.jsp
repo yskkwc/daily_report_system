@@ -19,26 +19,24 @@
               <td><c:out value="${employee.name}" /></td>
             </tr>
             <tr>
-                <th>所属</th>
-                <td>
-                <c:choose>
-                    <c:when test="${employee.department == 'general'}">
-                        <c:out value= "総務部"/>
-                    </c:when>
-                    <c:when test="${employee.department == 'legal'}">
-                        <c:out value= "法務部"/>
-                    </c:when>
-                    <c:when test="${employee.department == 'hr'}">
-                        <c:out value= "人事部"/>
-                    </c:when>
-                    <c:when test="${employee.department == 'account'}">
-                        <c:out value= "経理部"/>
-                    </c:when>
-                    <c:when test="${employee.department == 'corpsales'}">
-                        <c:out value= "営業部"/>
-                    </c:when>
-                </c:choose>
-              </td>
+              <th>所属</th>
+              <td><c:choose>
+                  <c:when test="${employee.department == 'general'}">
+                    <c:out value="総務部" />
+                  </c:when>
+                  <c:when test="${employee.department == 'legal'}">
+                    <c:out value="法務部" />
+                  </c:when>
+                  <c:when test="${employee.department == 'hr'}">
+                    <c:out value="人事部" />
+                  </c:when>
+                  <c:when test="${employee.department == 'account'}">
+                    <c:out value="経理部" />
+                  </c:when>
+                  <c:when test="${employee.department == 'corpsales'}">
+                    <c:out value="営業部" />
+                  </c:when>
+                </c:choose></td>
             </tr>
             <tr>
               <th>権限</th>

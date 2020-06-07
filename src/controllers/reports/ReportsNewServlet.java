@@ -32,7 +32,7 @@ public class ReportsNewServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // getId()(指定なし新規Id)して、"_token"にする
+        // getId()(指定なし新規Id)して"_token"にする
         request.setAttribute("_token", request.getSession().getId());
 
         // 新規のリポートデーターをrに格納

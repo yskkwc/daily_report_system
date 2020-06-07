@@ -42,13 +42,15 @@ public class ReportValidator {
 
         return "";
     }
+
     //
     private static String _validateRange(Integer publish) {
-        if(publish == 0 || publish.equals("")) {
+        if (publish == 0 || publish.equals("")) {
+            /* option value = 0 */
             return "公開範囲を設定してください。";
-            }
+        }
 
         return "";
     }
-    //
+
 }

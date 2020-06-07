@@ -89,7 +89,7 @@ public class ReportsCreateServlet extends HttpServlet {
                 em.close();
                 request.getSession().setAttribute("flush", "登録が完了しました。");
 
-                // リダイヤル index.jspへ
+                // リダイヤル index.jspへ。
                 response.sendRedirect(request.getContextPath() + "/reports/index");
             }
         }

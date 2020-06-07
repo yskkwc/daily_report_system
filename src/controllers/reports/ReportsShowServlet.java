@@ -35,7 +35,7 @@ public class ReportsShowServlet extends HttpServlet {
             throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
-        // DBへ"id"をInt型にして送り、この"id"の情報をshowservletで受けて、rにしまう
+        // DBへ"id"をInt型にして送り、この"id"の情報をshowservletで受けてrにしまう
         Report r = em.find(Report.class, Integer.parseInt(request.getParameter("id")));
 
         em.close();
