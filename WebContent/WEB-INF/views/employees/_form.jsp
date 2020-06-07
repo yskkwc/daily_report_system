@@ -38,13 +38,7 @@
       <option selected value="account">経理部</option>
     </c:when>
     <c:when test='${emplopyee.department == "corpsales"}'>
-      <option selected value="corpsales">法人営業部</option>
-    </c:when>
-    <c:when test='${emplopyee.department == "intsales"}'>
-      <option selected value="intsales">国際営業部</option>
-    </c:when>
-    <c:when test='${emplopyee.department == "qm"}'>
-      <option selected value="qm">品質管理部</option>
+      <option selected value="corpsales">営業部</option>
     </c:when>
     <c:otherwise>
       <option value="">所属を選択してください</option>
