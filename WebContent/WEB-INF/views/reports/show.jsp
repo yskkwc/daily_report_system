@@ -19,7 +19,7 @@
             </c:when>
             <c:when
               test="${report.publish == 3 && sessionScope.login_employee.id
-            == report.employee.id && sessionScope.login_employee.department == report.employee.department
+            == report.employee.id || sessionScope.login_employee.department == report.employee.department
             || sessionScope.login_employee.admin_flag == 1}">
               <c:import url="detail.jsp" />
             </c:when>
@@ -36,6 +36,23 @@
             <a href="<c:url value="/reports/edit?id=${report.id}" />">この日報を編集する</a>
           </p>
         </c:if>
+        <!--<c:if test="${sessionScope.login_employee.id == report.employee.id}">
+          <p >
+            <a href="#" onclick="confirmDestroy();">この履歴を削除する</a>
+          </p>
+        <form method="POST"
+          action="${pageContext.request.contextPath}/reports/destroy">
+          <input type="hidden" name="_token" value="${_token}" />
+        </form>
+        <script>
+          function confirmDestroy() {
+              if(confirm("本当に削除しますか？")) {
+                  document.forms[0].submit();
+              }
+          }
+          </script>
+        <p>
+        </c:if>-->
       </c:when>
       <c:otherwise>
         <h2>お探しのデータは見つかりませんでした。</h2>

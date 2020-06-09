@@ -22,7 +22,8 @@
         <tr class="row${status.count % 2}">
           <td class="report_name"><c:out value="${report.employee.name}" />
           </td>
-          <td class="report_department"><c:choose>
+          <td class="report_department">
+          <c:choose>
               <c:when test="${report.employee.department == 'general'}">
                 <c:out value="総務部" />
               </c:when>
@@ -52,12 +53,12 @@
             </c:when>
             <c:when
               test="${report.publish == 3 && sessionScope.login_employee.id
-            == report.employee.id && sessionScope.login_employee.department == report.employee.department
+            == report.employee.id || sessionScope.login_employee.department == report.employee.department
             || sessionScope.login_employee.admin_flag == 1}">
               <td class="report_title">${report.title}</td>
             </c:when>
             <c:otherwise>
-              <td class="report_title">閲覧権限がありません</td>
+              <td class="report_title">※閲覧権限がありません</td>
             </c:otherwise>
           </c:choose>
           <td class="report_action"><a

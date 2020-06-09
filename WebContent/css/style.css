@@ -115,3 +115,7 @@ h3.detail {
   margin-top: 140px;
   margin-bottom: 115px;
 }
+
+td.report_department {
+  width: 30%
+}
