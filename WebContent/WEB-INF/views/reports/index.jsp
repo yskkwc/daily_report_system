@@ -22,7 +22,7 @@
         <tr class="row${status.count % 2}">
           <td class="report_name"><c:out value="${report.employee.name}" />
           </td>
-          <td class="report_department">
+          <td class="department">
           <c:choose>
               <c:when test="${report.employee.department == 'general'}">
                 <c:out value="総務部" />

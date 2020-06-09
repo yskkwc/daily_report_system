@@ -109,13 +109,22 @@ select {
 h1 a {
     color: #eeeeee;
 }
-h3.detail {
-  font-size: 40px;
-  padding-top: 136px;
-  margin-top: 140px;
-  margin-bottom: 115px;
+
+.etsuran {
+  font-size: 20px;
+  padding-top: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-td.report_department {
-  width: 30%
+.department {
+  width: 15%;
+}
+
+.syozoku {
+  width: 15%;
+}
+
+.naiyou {
+  text-align: left;
 }

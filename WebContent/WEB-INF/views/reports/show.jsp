@@ -24,9 +24,24 @@
               <c:import url="detail.jsp" />
             </c:when>
             <c:otherwise>
-              <h3>
-                <c:out value="閲覧権限がありません" />
+              <h3 class="etsuran">
+                <c:out value="※この日報の閲覧権限がありません" />
               </h3>
+        <tr>
+          <th>公開範囲</th>
+          <c:if test="${report.publish == 1}">
+            <td><c:out value="全員に公開" /></td>
+          </c:if>
+          <c:if test="${report.publish == 2}">
+            <td><c:out value="自分と管理者にのみ公開" /></td>
+          </c:if>
+          <c:if test="${report.publish == 3}">
+            <td><c:out value="部署内にのみ公開" /></td>
+          </c:if>
+        </tr>
+        <tr>
+
+
             </c:otherwise>
           </c:choose>
         </table>

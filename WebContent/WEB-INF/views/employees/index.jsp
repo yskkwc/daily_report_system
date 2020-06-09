@@ -23,7 +23,8 @@
             <!-- 社員番号 -->
             <td><c:out value="${employee.name}" /></td>
             <!-- 氏名 -->
-            <td><c:choose>
+            <td class="syozoku">
+            <c:choose>
                 <c:when test="${employee.department == 'general'}">
                   <c:out value="総務部" />
                 </c:when>

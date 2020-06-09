@@ -19,7 +19,7 @@
   <tr>
     <th>内容</th>
     <td>
-    <pre>
+    <pre class="naiyou">
         <c:out value="${report.content}" />
     </pre>
     </td>
