@@ -19,9 +19,7 @@
   <tr>
     <th>内容</th>
     <td>
-    <pre class="naiyou">
-        <c:out value="${report.content}" />
-    </pre>
+    <pre class="naiyou"><c:out value="${report.content}" /></pre>
     </td>
   </tr>
   <tr>
